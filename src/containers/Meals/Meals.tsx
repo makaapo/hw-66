@@ -23,7 +23,7 @@ const Meals = () => {
         : [];
       setMeals(addedMeals);
     } catch (error) {
-      toast.error('error loading meals');
+      toast.error('Error loading meals');
     } finally {
       setLoading(false);
     }
@@ -62,14 +62,18 @@ const Meals = () => {
         <Spinner />
       ) : (
         <div>
-          {meals.map((meal) => (
-            <MealItem
-              key={meal.id}
-              meal={meal}
-              onDelete={deleteMeal}
-              isDeleting={isDeleting}
-            />
-          ))}
+          {meals.length > 0 ? (
+            meals.map((meal) => (
+              <MealItem
+                key={meal.id}
+                meal={meal}
+                onDelete={deleteMeal}
+                isDeleting={isDeleting}
+              />
+            ))
+          ) : (
+            <h4 className="text-center">No meals, please add a meal!</h4>
+          )}
         </div>
       )}
     </div>
