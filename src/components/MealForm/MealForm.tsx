@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {ApiMeal, MealMutation} from '../../types';
+import React, { useState } from 'react';
+import { ApiMeal, MealMutation } from '../../types';
 import ButtonSpinner from '../Spinner/ButtonSpinner';
 
 interface Props {
@@ -14,15 +14,21 @@ const emptyState: MealMutation = {
   calories: '',
 };
 
-const MealForm: React.FC<Props> = ({onSubmit, existingMeal, isLoading = false}) => {
+const MealForm: React.FC<Props> = ({
+  onSubmit,
+  existingMeal,
+  isLoading = false,
+}) => {
   const initialState: MealMutation = existingMeal
-    ? {...existingMeal, calories: existingMeal.calories.toString()}
+    ? { ...existingMeal, calories: existingMeal.calories.toString() }
     : emptyState;
 
   const [meal, setMeal] = useState<MealMutation>(initialState);
 
   const changeMeal = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) => {
     setMeal((prev) => ({
       ...prev,
@@ -81,7 +87,11 @@ const MealForm: React.FC<Props> = ({onSubmit, existingMeal, isLoading = false}) 
           value={meal.calories.toString()}
         />
       </div>
-      <button type="submit" className="btn btn-primary mt-2" disabled={isLoading}>
+      <button
+        type="submit"
+        className="btn btn-primary mt-2"
+        disabled={isLoading}
+      >
         {isLoading && <ButtonSpinner />}
         {existingMeal ? 'Update' : 'Create'}
       </button>

@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import MealForm from '../../components/MealForm/MealForm';
 import axiosApi from '../../axiosApi';
-import {ApiMeal} from '../../types';
-import {useNavigate} from 'react-router-dom';
-import {toast} from 'react-toastify';
+import { ApiMeal } from '../../types';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const NewMeal = () => {
   const [isCreating, setIsCreating] = useState(false);
@@ -15,7 +15,7 @@ const NewMeal = () => {
       await axiosApi.post('/meals.json', meal);
       navigate('/');
       toast.success('Meal created');
-    } catch {
+    } catch (error) {
       toast.error('error when adding');
     } finally {
       setIsCreating(false);
